@@ -1,25 +1,53 @@
-const canvas = document.getElementById('wave');
+const canvas = document.getElementById('heroCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = 150;
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
 
-let t = 0;
+const particles = [];
+const particleCount = 100;
 
-function drawWave() {
-  ctx.clearRect(0,0,canvas.width, canvas.height);
-  ctx.fillStyle = 'rgba(0,240,255,0.3)';
-  ctx.beginPath();
-  for(let x = 0; x < canvas.width; x++) {
-    let y = 20 * Math.sin((x+t)/50) + 40 * Math.sin((x+t)/100);
-    ctx.lineTo(x, y);
+class Particle {
+  constructor() {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.radius = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 1;
+    this.speedY = (Math.random() - 0.5) * 1;
   }
-  ctx.lineTo(canvas.width, canvas.height);
-  ctx.lineTo(0, canvas.height);
-  ctx.closePath();
-  ctx.fill();
-  t += 2;
-  requestAnimationFrame(drawWave);
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > w) this.speedX *= -1;
+    if (this.y < 0 || this.y > h) this.speedY *= -1;
+  }
+  draw() {
+    ctx.fillStyle = '#00f0ff';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
-drawWave();
+function initParticles() {
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
+
+initParticles();
+animate();
