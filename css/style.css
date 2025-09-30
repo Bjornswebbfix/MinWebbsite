@@ -1,62 +1,165 @@
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
-  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f1f;
+  color: #fff;
+  line-height: 1.6;
 }
 
 header {
-  background: #333;
-  color: white;
-  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(15,15,31,0.85);
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 15px 50px;
+  z-index: 1000;
 }
 
 header .logo {
-  height: 50px;
-  margin-right: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-nav a {
-  color: white;
-  margin-right: 15px;
+header ul {
+  display: flex;
+  list-style: none;
+}
+
+header ul li {
+  margin-left: 30px;
+}
+
+header ul li a {
   text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-nav a:hover {
-  text-decoration: underline;
+header ul li a:hover {
+  color: #00f0ff;
 }
 
-main {
-  padding: 20px;
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.featured {
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.hero-text {
+  z-index: 10;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  text-shadow: 2px 2px 15px #000;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(45deg,#00f0ff,#ff00f0);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Wave canvas */
+canvas#wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  z-index: -1;
+}
+
+/* Services section */
+.services {
+  padding: 100px 50px;
+  background: #111126;
+}
+
+.services h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+}
+
+.service-cards {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .card {
-  background: #eee;
-  padding: 20px;
-  border-radius: 5px;
+  background: linear-gradient(135deg,#00f0ff,#ff00f0);
+  padding: 50px;
+  margin: 15px;
+  border-radius: 20px;
+  min-width: 250px;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  transition: transform 0.3s;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Team section */
 .team {
+  padding: 100px 50px;
+  background: linear-gradient(120deg,#0f0f1f,#111126);
+}
+
+.members {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
 .member img {
-  width: 150px;
-  border-radius: 10px;
+  border-radius: 50%;
+  width: 180px;
+  margin-bottom: 15px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
+.member p {
+  text-align: center;
+  font-weight: 600;
 }
