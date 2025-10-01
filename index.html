@@ -2,43 +2,40 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Björns Webbfix</title>
+  <title>Företag AB</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Hero-sektion */
-    #heroCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    /* Hero */
+    .hero {
+      position: relative;
       height: 100vh;
-      z-index: -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
     }
 
     .hero-text {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      color: #fff;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      height: 100vh;
-      padding-bottom: 50px; /* knapp längst ner */
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      z-index: 10;
     }
 
     .hero-text h1 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       text-shadow: 2px 2px 15px #000;
-      margin-bottom: 10px;
     }
 
     .hero-text p {
       font-size: 1.5rem;
-      margin-bottom: 20px;
+      max-width: 800px;
     }
 
-    .btn {
+    .hero-text .btn {
       display: inline-block;
       background: linear-gradient(45deg,#00f0ff,#ff00f0);
       color: #fff;
@@ -49,53 +46,37 @@
       transition: transform 0.3s;
     }
 
-    .btn:hover {
-      transform: scale(1.1);
+    .hero-text .btn:hover {
+      transform: scale(1.05);
     }
 
-    /* Våra Tjänster-sektion */
-    .services-home {
-      position: relative;
-      padding: 100px 50px;
-      text-align: center;
-      color: #fff;
-      background: #111126;
-      overflow: hidden;
-    }
-
-    .services-home h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .services-home p {
-      max-width: 800px;
-      margin: 0 auto 40px auto;
-      font-size: 1.2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .services-background {
+    #heroCanvas {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    /* Våra tjänster som underrubriker */
+    .services-preview {
+      padding: 50px 20px 100px 20px;
+      text-align: center;
+      background: #111126;
+    }
+
+    .services-preview h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .services-preview .tags {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 40px;
-      z-index: 1;
-    }
-
-    .services-background span {
-      font-size: 4rem;
-      font-weight: bold;
-      color: rgba(0,200,255,0.2); /* mjuk blå färg */
-      text-shadow: 1px 1px 2px #000;
-      white-space: nowrap;
+      font-size: 1.3rem;
+      color: #00f0ff;
     }
 
     footer {
@@ -105,13 +86,10 @@
       color: #fff;
     }
 
-    /* Responsiv */
     @media (max-width: 768px) {
       .hero-text h1 { font-size: 2.2rem; }
-      .hero-text p { font-size: 1.2rem; }
-      .services-home h2 { font-size: 2rem; }
-      .services-home p { font-size: 1rem; }
-      .services-background span { font-size: 2rem; }
+      .hero-text p { font-size: 1rem; }
+      .services-preview .tags { flex-direction: column; gap: 15px; font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -126,24 +104,25 @@
     </nav>
   </header>
 
-  <canvas id="heroCanvas"></canvas>
+  <section class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-text">
+      <h1>Innovativa idéer, verkliga resultat</h1>
+      <p>Passande lösningar för ditt företag</p>
+      <a href="#servicesSection" class="btn">Utforska Tjänster</a>
+    </div>
+  </section>
 
-  <div class="hero-text">
-    <h1>Innovativa idéer, verkliga resultat</h1>
-    <p>Passande lösningar för ditt företag</p>
-    <a href="#servicesHome" class="btn">Utforska Tjänster</a>
-  </div>
-
-  <main class="services-home" id="servicesHome">
-    <div class="services-background">
+  <section class="services-preview" id="servicesSection">
+    <h2>Våra tjänster</h2>
+    <div class="tags">
       <span>Webbutveckling</span>
       <span>Design</span>
       <span>Marknadsföring</span>
     </div>
-    <h2>Våra tjänster</h2>
-    <p>Plats för beskrivning</p>
-  </main>
+  </section>
 
+  <!-- Footer med kontaktuppgifter -->
   <footer>
     <p>Adress: Plats för beskrivning | Telefon: Plats för beskrivning | Email: Plats för beskrivning</p>
   </footer>
