@@ -59,29 +59,68 @@
       z-index: -1;
     }
 
-    /* Våra tjänster som underrubriker */
+    /* Våra tjänster-sektion */
     .services-preview {
-      padding: 50px 20px 100px 20px;
+      padding: 80px 20px 200px 20px;
       text-align: center;
       background: #111126;
     }
 
     .services-preview h2 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+      font-size: 3rem;
+      margin-bottom: 50px;
     }
 
-    .services-preview .tags {
+    .services-circles {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
-      gap: 40px;
-      font-size: 1.3rem;
-      color: #00f0ff;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #000;
+      background: #ffffffcc; /* vitaktig bakgrund */
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .circle.left {
+      position: absolute;
+      left: 5%;
+    }
+
+    .circle.center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .circle.right {
+      position: absolute;
+      right: 5%;
+    }
+
+    .services-description {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      text-align: center;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 50px 20px 30px 20px;
       background: #111126;
       color: #fff;
     }
@@ -90,6 +129,10 @@
       .hero-text h1 { font-size: 2.2rem; }
       .hero-text p { font-size: 1rem; }
       .services-preview .tags { flex-direction: column; gap: 15px; font-size: 1.1rem; }
+      .circle {
+        position: static !important;
+        margin: 20px auto;
+      }
     }
   </style>
 </head>
@@ -115,14 +158,16 @@
 
   <section class="services-preview" id="servicesSection">
     <h2>Våra tjänster</h2>
-    <div class="tags">
-      <span>Webbutveckling</span>
-      <span>Design</span>
-      <span>Marknadsföring</span>
+    <div class="services-circles">
+      <div class="circle left">Webbutveckling</div>
+      <div class="circle center">Design</div>
+      <div class="circle right">Marknadsföring</div>
+    </div>
+    <div class="services-description">
+      <p>Plats för brödtext</p>
     </div>
   </section>
 
-  <!-- Footer med kontaktuppgifter -->
   <footer>
     <p>Adress: Plats för beskrivning | Telefon: Plats för beskrivning | Email: Plats för beskrivning</p>
   </footer>
