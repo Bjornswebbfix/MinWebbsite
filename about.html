@@ -4,10 +4,57 @@
   <meta charset="UTF-8">
   <title>Om oss - Företag AB</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Hero med coding lines */
+    #heroCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      background: #0f0f1f;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      gap: 20px;
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 15px #000;
+    }
+
+    .hero-text p {
+      font-size: 1.5rem;
+      max-width: 800px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #111126;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2.2rem; }
+      .hero-text p { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Företag AB logo" class="logo">
+    <img src="images/logo.jpg" alt="Företag AB logo" class="logo">
     <nav>
       <a href="index.html">Hem</a>
       <a href="about.html">Om oss</a>
@@ -16,25 +63,71 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Om oss</h1>
-    <p>Företag AB grundades 2025.</p>
+  <canvas id="heroCanvas"></canvas>
 
-    <h2>Teamet</h2>
-    <div class="team">
-      <div class="member">
-        <img src="images/team1.jpg" alt="Teammedlem 1">
-        <p>Anna - VD</p>
-      </div>
-      <div class="member">
-        <img src="images/team2.jpg" alt="Teammedlem 2">
-        <p>Erik - Designer</p>
-      </div>
-    </div>
-  </main>
+  <div class="hero-text">
+    <h1>Om oss</h1>
+    <p>Plats för beskrivning</p>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Företag AB</p>
+    <p>Adress: Plats för beskrivning | Telefon: Plats för beskrivning | Email: Plats för beskrivning</p>
   </footer>
+
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    const lines = [];
+    const lineCount = 60;
+
+    class Line {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.length = Math.random() * 20 + 20;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+      }
+      update() {
+        this.y += this.speedY;
+        if(this.y < 0) this.y = h;
+        if(this.y > h) this.y = 0;
+      }
+      draw() {
+        ctx.strokeStyle = "rgba(0,200,255,0.2)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.stroke();
+      }
+    }
+
+    function initLines() {
+      for(let i=0; i<lineCount; i++) {
+        lines.push(new Line());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      lines.forEach(line => {
+        line.update();
+        line.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+
+    initLines();
+    animate();
+  </script>
 </body>
 </html>
