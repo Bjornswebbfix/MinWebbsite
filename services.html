@@ -2,60 +2,31 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Tjänster - Företag AB</title>
+  <title>Våra Tjänster - Företag AB</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Extra styling för services-sidan */
-    main {
-      padding: 150px 50px 50px 50px;
-      color: #fff;
-      text-align: center;
-    }
-
-    main h1, main h2 {
-      margin-bottom: 20px;
-    }
-
-    /* Grid för mallar */
-    .templates-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .template-card {
-      background: linear-gradient(135deg, #001a33, #002244);
-      border: 1px solid #00f0ff;
-      border-radius: 15px;
-      padding: 20px;
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .template-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00f0ff;
-    }
-
-    /* Hero */
-    #heroCanvasServices {
+    /* Hero-sektion med coding lines */
+    #heroCanvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
       z-index: -1;
+      background: #0f0f1f;
     }
 
     .hero-text {
       position: relative;
       z-index: 10;
-      padding-top: 150px;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
     }
 
     .hero-text h1 {
@@ -65,24 +36,89 @@
 
     .hero-text p {
       font-size: 1.5rem;
-      margin: 15px 0;
+      max-width: 800px;
     }
 
     .btn {
-      margin-top: 20px;
+      display: inline-block;
+      background: linear-gradient(135deg,#00f0ff,#0040ff);
+      color: #fff;
+      padding: 14px 35px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg,#0040ff,#00f0ff);
+    }
+
+    /* Skräddarsydd hemsida + mallar */
+    .solutions-section {
+      padding: 100px 50px;
+      background: #111126;
+      color: #fff;
+      text-align: center;
+    }
+
+    .solutions-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .solutions-section p.description {
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+      font-size: 1.2rem;
+    }
+
+    .templates {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 50px;
+    }
+
+    .template {
+      width: 250px;
+      text-align: center;
+    }
+
+    .template img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .template p {
+      font-size: 1rem;
+      margin-top: 5px;
+      color: #00f0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #111126;
+      color: #fff;
     }
 
     /* Responsiv */
     @media (max-width: 768px) {
       .hero-text h1 { font-size: 2.2rem; }
-      .hero-text p { font-size: 1.2rem; }
-      main { padding: 100px 20px 50px 20px; }
+      .hero-text p { font-size: 1rem; }
+      .solutions-section h2 { font-size: 2rem; }
+      .solutions-section p.description { font-size: 1rem; }
+      .template { width: 80%; }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Företag AB logo" class="logo">
+    <img src="images/logo.jpg" alt="Företag AB logo" class="logo">
     <nav>
       <a href="index.html">Hem</a>
       <a href="about.html">Om oss</a>
@@ -91,84 +127,90 @@
     </nav>
   </header>
 
-  <canvas id="heroCanvasServices"></canvas>
+  <canvas id="heroCanvas"></canvas>
 
   <div class="hero-text">
     <h1>Våra hemsidelösningar</h1>
-    <p>Plats för beskrivning</p>
-    <a href="#servicesContent" class="btn">Utforska Tjänster</a>
+    <p class="description">Plats för beskrivning</p>
+    <a href="#solutionsSection" class="btn">Utforska Tjänster</a>
   </div>
 
-  <main id="servicesContent">
+  <main class="solutions-section" id="solutionsSection">
     <!-- Skräddarsydd hemsida -->
-    <section>
-      <h2>Skräddarsydd hemsida</h2>
-      <p>Plats för beskrivning</p>
-      <div style="height:200px; background:#001a33; margin:20px auto; border-radius:15px;">
-        Plats för bild
-      </div>
-    </section>
+    <h2>Skräddarsydd hemsida</h2>
+    <p class="description">Plats för beskrivning</p>
+    <img src="images/custom-site.jpg" alt="Skräddarsydd hemsida" style="width:300px; border-radius:15px; margin-bottom:30px;">
 
-    <!-- Mallar -->
-    <section style="margin-top:50px;">
-      <h2>Mallar för olika sorters hemsidor</h2>
-      <p>Plats för beskrivning</p>
-      <div class="templates-grid">
-        <div class="template-card">En sida<br>Plats för bild</div>
-        <div class="template-card">Flera sidor/flikar<br>Plats för bild</div>
-        <div class="template-card">En sida med animationer<br>Plats för bild</div>
-        <div class="template-card">Flera sidor/flikar med animationer<br>Plats för bild</div>
+    <!-- Mallar för olika sorters hemsidor -->
+    <h2>Mallar för olika sorters hemsidor</h2>
+    <p class="description">Plats för generell beskrivning av mallarna</p>
+    <div class="templates">
+      <div class="template">
+        <img src="images/template1.jpg" alt="En sida">
+        <p>En sida</p>
       </div>
-    </section>
+      <div class="template">
+        <img src="images/template2.jpg" alt="Flera sidor/flikar">
+        <p>Flera sidor/flikar</p>
+      </div>
+      <div class="template">
+        <img src="images/template3.jpg" alt="En sida med animationer">
+        <p>En sida med animationer</p>
+      </div>
+      <div class="template">
+        <img src="images/template4.jpg" alt="Flera sidor/flikar med animationer">
+        <p>Flera sidor/flikar med animationer</p>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 Företag AB</p>
+    <p>Adress: Plats för beskrivning | Telefon: Plats för beskrivning | Email: Plats för beskrivning</p>
   </footer>
 
   <script>
-    const canvas = document.getElementById('heroCanvasServices');
+    const canvas = document.getElementById('heroCanvas');
     const ctx = canvas.getContext('2d');
 
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
 
-    const particles = [];
-    const particleCount = 100;
+    const lines = [];
+    const lineCount = 60;
 
-    class Particle {
+    class Line {
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.radius = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
+        this.length = Math.random() * 20 + 20;
+        this.speedY = (Math.random() - 0.5) * 1.5;
       }
       update() {
-        this.x += this.speedX;
         this.y += this.speedY;
-        if (this.x < 0 || this.x > w) this.speedX *= -1;
-        if (this.y < 0 || this.y > h) this.speedY *= -1;
+        if(this.y < 0) this.y = h;
+        if(this.y > h) this.y = 0;
       }
       draw() {
-        ctx.fillStyle = '#00f0ff';
+        ctx.strokeStyle = "rgba(0,200,255,0.2)";
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.stroke();
       }
     }
 
-    function initParticles() {
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+    function initLines() {
+      for(let i=0; i<lineCount; i++) {
+        lines.push(new Line());
       }
     }
 
     function animate() {
       ctx.clearRect(0, 0, w, h);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+      lines.forEach(line => {
+        line.update();
+        line.draw();
       });
       requestAnimationFrame(animate);
     }
@@ -178,7 +220,7 @@
       h = canvas.height = window.innerHeight;
     });
 
-    initParticles();
+    initLines();
     animate();
   </script>
 </body>
