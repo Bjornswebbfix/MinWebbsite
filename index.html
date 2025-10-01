@@ -2,12 +2,116 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Företag AB</title>
+  <title>Björns Webbfix</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Hero-sektion */
+    #heroCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding-top: 150px;
+      color: #fff;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 15px #000;
+    }
+
+    .hero-text p {
+      font-size: 1.5rem;
+      margin: 15px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(45deg,#00f0ff,#ff00f0);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Våra Tjänster-sektion */
+    .services-home {
+      position: relative;
+      padding: 150px 50px 100px 50px;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .services-home h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-home p {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: rgba(0,240,255,0.05);
+      font-size: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1;
+    }
+
+    .services-background span {
+      margin: 20px;
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #111126;
+      color: #fff;
+    }
+
+    /* Responsiv */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2.2rem; }
+      .hero-text p { font-size: 1.2rem; }
+      .services-home h2 { font-size: 2rem; }
+      .services-home p { font-size: 1rem; }
+      .services-background { font-size: 3rem; }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Företag AB logo" class="logo">
+    <img src="images/logo.jpg" alt="Björns webbfix logo" class="logo">
     <nav>
       <a href="index.html">Hem</a>
       <a href="about.html">Om oss</a>
@@ -16,42 +120,82 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <canvas id="heroCanvas"></canvas>
-    <div class="hero-text">
-      <h1>Innovativa idéer, verkliga resultat</h1>
-      <p>Passande lösningar för ditt företag</p>
-      <a href="#services" class="btn">Utforska Tjänster</a>
-    </div>
-  </section>
+  <canvas id="heroCanvas"></canvas>
 
-  <section id="services" class="services">
-    <h2>Våra Tjänster</h2>
-    <div class="service-cards">
-      <div class="card">Webbutveckling</div>
-      <div class="card">Design</div>
-      <div class="card">Marknadsföring</div>
-    </div>
-  </section>
+  <div class="hero-text">
+    <h1>Innovativa idéer, verkliga resultat</h1>
+    <p>Passande lösningar för ditt företag</p>
+    <a href="#servicesHome" class="btn">Utforska Tjänster</a>
+  </div>
 
-  <section class="team">
-    <h2>Vårt Team</h2>
-    <div class="members">
-      <div class="member">
-        <img src="images/team1.jpg" alt="Anna">
-        <p>Anna – VD</p>
-      </div>
-      <div class="member">
-        <img src="images/team2.jpg" alt="Erik">
-        <p>Erik – Designer</p>
-      </div>
+  <main class="services-home" id="servicesHome">
+    <div class="services-background">
+      <span>Webbutveckling</span>
+      <span>Design</span>
+      <span>Marknadsföring</span>
     </div>
-  </section>
+    <h2>Våra tjänster</h2>
+    <p>Plats för beskrivning</p>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Företag AB</p>
+    <p>Adress: Plats för beskrivning | Telefon: Plats för beskrivning | Email: Plats för beskrivning</p>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 100;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.radius = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > w) this.speedX *= -1;
+        if (this.y < 0 || this.y > h) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = '#00f0ff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+
+    initParticles();
+    animate();
+  </script>
 </body>
 </html>
