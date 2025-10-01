@@ -5,6 +5,45 @@
   <title>Företag AB</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: #0f0f1f;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(15,15,31,0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+    }
+
+    header .logo {
+      height: 50px;
+      width: auto;
+    }
+
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover {
+      color: #00f0ff;
+    }
+
     /* Hero */
     .hero {
       position: relative;
@@ -59,16 +98,16 @@
       z-index: -1;
     }
 
-    /* Våra tjänster-sektion */
+    /* Våra tjänster */
     .services-preview {
-      padding: 80px 20px 200px 20px;
+      padding: 80px 20px 400px 20px;
       text-align: center;
       background: #111126;
     }
 
     .services-preview h2 {
       font-size: 3rem;
-      margin-bottom: 50px;
+      margin-bottom: 80px;
     }
 
     .services-circles {
@@ -76,51 +115,40 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
 
     .circle {
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #000;
-      background: #ffffffcc; /* vitaktig bakgrund */
+      background: #ffffffcc;
       padding: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .circle.left {
-      position: absolute;
-      left: 5%;
-    }
-
-    .circle.center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .circle.right {
-      position: absolute;
-      right: 5%;
-    }
+    .circle.left { position: absolute; left: 5%; top: 0; }
+    .circle.center { position: absolute; left: 50%; top: 0; transform: translateX(-50%); }
+    .circle.right { position: absolute; right: 5%; top: 0; }
 
     .services-description {
       max-width: 800px;
-      margin: 0 auto;
+      margin: 300px auto 0 auto;
       font-size: 1.4rem;
       line-height: 1.8;
       text-align: center;
+      min-height: 15em;
     }
 
     footer {
       text-align: center;
-      padding: 50px 20px 30px 20px;
+      padding: 60px 20px 30px 20px;
       background: #111126;
       color: #fff;
     }
@@ -128,10 +156,15 @@
     @media (max-width: 768px) {
       .hero-text h1 { font-size: 2.2rem; }
       .hero-text p { font-size: 1rem; }
-      .services-preview .tags { flex-direction: column; gap: 15px; font-size: 1.1rem; }
       .circle {
         position: static !important;
         margin: 20px auto;
+        width: 200px;
+        height: 200px;
+        font-size: 1.5rem;
+      }
+      .services-description {
+        margin: 50px auto 0 auto;
       }
     }
   </style>
